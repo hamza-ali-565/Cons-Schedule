@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch,} from "react-redux";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Routes,
+//   Route,
+//   Navigate,
+// } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
-import DischargeSummary from "./Screens/IPD/Discharge/DischargeSummary/DischargeSummary";
 import Home from "./Screens/ConsSchedule/Home";
 
 function App() {
