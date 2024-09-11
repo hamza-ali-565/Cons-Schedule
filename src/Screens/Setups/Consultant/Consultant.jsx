@@ -82,6 +82,8 @@ const Consultant = () => {
           status,
           days,
           timing,
+          qualification,
+          roomNo,
           _id: (details && details?._id) || "",
         },
         { withCredentials: true }
@@ -191,12 +193,14 @@ const Consultant = () => {
           label={"CNIC"}
           placeholder={"CNIC"}
           value={cnic}
+          type={"Number"}
           onChange={(e) => setCnic(e.target.value.toUpperCase())}
         />
         <LabeledInput
           label={"Phone"}
           placeholder={"Phone"}
           value={phone}
+          type={"Number"}
           onChange={(e) => setPhone(e.target.value.toUpperCase())}
         />
         <LabeledInput
