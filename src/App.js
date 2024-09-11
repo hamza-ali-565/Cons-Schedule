@@ -9,6 +9,7 @@ import { useDispatch,} from "react-redux";
 import axios from "axios";
 import "./App.css";
 import Home from "./Screens/ConsSchedule/Home";
+import Consultant from "./Screens/Setups/Consultant/Consultant";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function App() {
 
   return (
   <div>
-    <Home/>
+    <Consultant/>
   </div>
   );
 }
