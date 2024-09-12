@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch,} from "react-redux";
+import { useDispatch } from "react-redux";
 // import {
 //   BrowserRouter as Router,
 //   Routes,
@@ -8,21 +8,15 @@ import { useDispatch,} from "react-redux";
 // } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
-import Home from "./Screens/ConsSchedule/Home";
 import Consultant from "./Screens/Setups/Consultant/Consultant";
+import ConsultantSchedule from "./Screens/Setups/Consultant/ConsultantSchedule";
 
 function App() {
-  const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
-
-
-
-  
-
   return (
-  <div>
-    <Consultant/>
-  </div>
+    <div>
+      {/* <Consultant /> */}
+      <ConsultantSchedule />
+    </div>
   );
 }
 
