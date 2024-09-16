@@ -60,7 +60,7 @@ Font.register({
 const ConSchedulePDF = ({ consDetails }) => {
   console.log("ConstDetails", consDetails);
   const MyPage = ({ children }) => (
-    <Page size={[288, "auto"]} style={styles.page}>
+    <Page size={[265, "auto"]} style={styles.page}>
       <View style={styles.logoContainer}>
         <Image src={logo} style={styles.Image} />
       </View>
@@ -88,16 +88,16 @@ const ConSchedulePDF = ({ consDetails }) => {
                   {items?.name}
                 </Text>
                 <Text style={styles.text}>{items?.qualification}</Text>
-                <Text style={styles.text}>
+                <Text style={[styles.text, { fontSize: 10 }]}>
                   {items?.days} {items?.timing}
                 </Text>
                 {items?.timing1 && (
-                  <Text style={styles.text}>
+                  <Text style={[styles.text, { fontSize: 10 }]}>
                     {items?.days1} {items?.timing1}
                   </Text>
                 )}
                 {items?.timing2 && (
-                  <Text style={styles.text}>
+                  <Text style={[styles.text, { fontSize: 10 }]}>
                     {items?.days2} {items?.timing2}
                   </Text>
                 )}
@@ -121,12 +121,50 @@ const ConSchedulePDF = ({ consDetails }) => {
           style={{
             height: "2",
             width: "100%",
-            marginTop: "10",
+            marginTop: "30",
             border: "1px solid black",
           }}
         />
-        <Text style={{ marginTop: "5", textAlign: "center", fontSize: "15" }}>
-          GET WELL SOON 🤞
+        <Text
+          style={{
+            marginTop: "5",
+            textAlign: "center",
+            fontSize: "10",
+            fontFamily: "Roboto",
+            fontWeight: "bold",
+          }}
+        >
+          24 HOURS OPEN
+        </Text>
+        <Text
+          style={{
+            marginTop: "3",
+            textAlign: "center",
+            fontSize: "10",
+            fontFamily: "Roboto",
+          }}
+        >
+          437/C Ghazi Salahuddin Road
+        </Text>
+        <Text
+          style={{
+            marginTop: "3",
+            textAlign: "center",
+            fontSize: "10",
+            fontFamily: "Roboto",
+          }}
+        >
+          C.P & Berar Society Cp & Berar Chs
+        </Text>
+        <Text
+          style={{
+            marginTop: "3",
+            textAlign: "center",
+            fontSize: "10",
+            fontFamily: "Roboto",
+          }}
+        >
+          Karachi City, Sindh
         </Text>
       </MyPage>
     </Document>
