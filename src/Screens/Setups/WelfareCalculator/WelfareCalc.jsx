@@ -91,29 +91,6 @@ const WelfareCalc = () => {
     console.log("Adjusted On Panel 1 ", panelAdjustment);
   };
 
-  // const parentFunc = () => {
-  //   if (other !== 0 && zAcc !== 0) {
-  //     if (100 - other - zAcc == 0) {
-  //       dualPartyComp();
-  //       console.log("Dual party comp");
-  //       return;
-  //     } else {
-  //       console.log("Dual party partition");
-  //       dualPartyPartition();
-  //       return;
-  //     }
-  //   } else if (other !== 0) {
-  //     console.log("Single Panel");
-  //     singlePanel();
-  //     return;
-  //   } else if (zAcc !== 0) {
-  //     console.log("Z only");
-
-  //     ZAccountOnly();
-  //     return;
-  //   }
-  // };
-
   const parentFunc = () => {
     console.log({ zAcc: +zAcc, other: +other });
 
