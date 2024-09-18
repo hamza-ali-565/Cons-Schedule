@@ -34,7 +34,17 @@ const ConsDisp = ({ All = "", onClickCons, onClickSpec, value }) => {
       const response = await axios.get(`${url}/getconsultant?All=${All}`, {
         withCredentials: true,
       });
-      console.log(response.data.data);
+      response?.data?.data.sort((a, b) => {
+        let nameA = a.speciality.toLowerCase();
+        let nameB = b.speciality.toLowerCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
       setLoaderTog(false);
       setData(response.data.data);
     } catch (error) {

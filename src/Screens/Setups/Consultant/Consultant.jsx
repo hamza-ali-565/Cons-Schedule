@@ -248,28 +248,28 @@ const Consultant = () => {
             onChange={(e) => setDays(e.target.value.toUpperCase())}
           />
           <LabeledInput
-            label={"Day 2"}
-            placeholder={"MON - TUES - WED"}
-            value={days1 ? days1 : ""}
-            onChange={(e) => setDays1(e.target.value.toUpperCase())}
-          />
-          <LabeledInput
-            label={"Day 3"}
-            placeholder={"MON - TUES - WED"}
-            value={days2 ? days2 : ""}
-            onChange={(e) => setDays2(e.target.value.toUpperCase())}
-          />
-          <LabeledInput
             label={"Timing of Day 1"}
             onChange={(e) => setTiming(e.target.value.toUpperCase())}
             value={timing ? timing : ""}
             placeholder={"12pm - 2pm"}
           />
           <LabeledInput
+            label={"Day 2"}
+            placeholder={"MON - TUES - WED"}
+            value={days1 ? days1 : ""}
+            onChange={(e) => setDays1(e.target.value.toUpperCase())}
+          />
+          <LabeledInput
             label={"Timing of Day 2"}
             onChange={(e) => setTiming1(e.target.value.toUpperCase())}
             value={timing1 ? timing1 : ""}
             placeholder={"4pm - 6pm"}
+          />
+          <LabeledInput
+            label={"Day 3"}
+            placeholder={"MON - TUES - WED"}
+            value={days2 ? days2 : ""}
+            onChange={(e) => setDays2(e.target.value.toUpperCase())}
           />
           <LabeledInput
             label={"Timing of Day 3 "}

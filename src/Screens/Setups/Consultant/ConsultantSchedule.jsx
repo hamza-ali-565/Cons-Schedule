@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import CenterHeading from "../../../Components/Center Heading/CenterHeading";
-import SpecialityModal from "../../../Components/Modal/SpecialityModal";
-import ConsultantModal from "../../../Components/Modal/ConsultantModal";
-import LabeledInput from "../../../Components/LabelledInput/LabeledInput";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Loader from "../../../Components/Modal/Loader";
@@ -13,6 +9,7 @@ import ConSchedulePDF from "../../../Components/PDFDetails/ConsSchedulePdf";
 import ConsScheduleDetailPdf from "../../../Components/PDFDetails/ConsScheduleDetailPdf";
 import ConsDisp from "../../../Components/ConsultantDisp/ConsDisp";
 import Header from "../../../Components/Header/Header";
+import PracticePageBreakintotwo from "../../../Components/PDFDetails/PracticePageBreakintotwo";
 
 const ConsultantSchedule = () => {
   const [consData, setConsData] = useState([]);
@@ -39,24 +36,6 @@ const ConsultantSchedule = () => {
     setSpecialityData(null);
   };
 
-  const getDataFromSpeciality = async (data) => {
-    try {
-      setOpen(true);
-      setSpecialityData(data);
-      setSelectedType("");
-      const response = await axios.get(
-        `${url}/opd/consultantSchedule?speciality=${data?.speciality}&specialityId=${data?._id}`
-      );
-      console.log("Response of getDataFromSpeciality", response);
-      setConsData(response?.data?.data?.data);
-      setOpen(false);
-    } catch (error) {
-      console.log("Error of getDataFromSpeciality", error);
-      setOpen(false);
-      setConsData([]);
-    }
-  };
-
   const ConScheduleThermPrint = async (data) => {
     const key = uuidv4();
 
@@ -79,18 +58,17 @@ const ConsultantSchedule = () => {
     ConScheduleThermPrint([item]);
   };
 
-  const printResultToPdf = async (data) => {
+  const printResultToPdfPrac = async (data) => {
     const key = uuidv4();
 
     // Create a PDF document as a Blob
-    const blob = await pdf(
-      <ConsScheduleDetailPdf key={key} resultData={data} />
-    ).toBlob();
+    const blob = await pdf(<PracticePageBreakintotwo data={data} />).toBlob();
 
     // Create a Blob URL and open it in a new tab
     let url = URL.createObjectURL(blob);
     window.open(url, "_blank");
     url = "";
+    setOpen(false);
   };
 
   const getData = async () => {
@@ -130,8 +108,7 @@ const ConsultantSchedule = () => {
       });
       // console.log("Data", sortedGrouped);
       console.log(response.data.data);
-      setOpen(false);
-      printResultToPdf(grouped);
+      printResultToPdfPrac(grouped);
     } catch (error) {
       setOpen(false);
       console.log("error of get data", error);
@@ -197,7 +174,7 @@ const ConsultantSchedule = () => {
           <ButtonDis title={"Refereh"} onClick={resetData} />
         </div>
       </div>
-      <Loader onClick={open} />
+      <Loader onClick={open} title={"Please Wait ..."} />
     </div>
   );
 };
