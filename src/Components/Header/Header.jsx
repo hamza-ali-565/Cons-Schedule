@@ -6,7 +6,7 @@ import { ErrorAlert } from "../Alert/Alert";
 import SimpleInput from "../SimpleInput/SimpleInput";
 import CenterHeading from "../Center Heading/CenterHeading";
 
-const Header = ({ onChange, inpShow = true }) => {
+const Header = ({ onChange, inpShow = true, value = "" }) => {
   const navigate = useNavigate(); // using 'const' here
   let pass = "1234554321";
   const navigateToHome = () => {
@@ -96,6 +96,7 @@ const Header = ({ onChange, inpShow = true }) => {
           </div>
         </div>
       )}
+      {value !== "" && <p>{value}</p>}
       <div className="flex justify-center space-x-5">
         <ButtonDis title={"Setup"} onClick={navigateToConsultant} />
         <ButtonDis title={"Schedule"} onClick={navigateToHome} />

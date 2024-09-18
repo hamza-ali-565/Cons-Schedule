@@ -3,6 +3,7 @@ import Header from "../../../Components/Header/Header";
 import LabeledInput from "../../../Components/LabelledInput/LabeledInput";
 import ButtonDis from "../../../Components/Button/ButtonDis";
 import { ErrorAlert } from "../../../Components/Alert/Alert";
+import CenterHeading from "../../../Components/Center Heading/CenterHeading";
 
 const WelfareCalc = () => {
   const [medicine, setMedicine] = useState(0);
@@ -26,6 +27,7 @@ const WelfareCalc = () => {
     setCash(0);
     setRecievable(0);
     setZAmount(0);
+    setOtherAmount(0);
   };
 
   const ZAccountOnly = () => {
@@ -38,23 +40,45 @@ const WelfareCalc = () => {
     setZAmount(Number(billWithoutMedAndCt * (zAcc / 100)));
     setRecievable(total - billWithoutMedAndCt * (zAcc / 100) - deposit);
     console.log(zAmount);
+    setOtherAmount(0);
   };
 
   const singlePanel = () => {
     setCash(100 - other);
+    setZAmount(0);
     setOtherAmount(Number(total - total * (other / 100)));
     setRecievable(total * (other / 100) - deposit);
     console.log(otherAmount);
   };
 
-  const dualPartyComp = () => {
-    setCash(100 - other - zAcc);
-    setRecievable(100 - other - zAcc);
+  const dualPartyComp = (value) => {
+    let z_Amm;
+    let panelAdjustment;
+    if (!value) {
+      let billWithoutMedAndCt = total - CT - medicine; // bill without medicine
+      z_Amm = Number(billWithoutMedAndCt * (zAcc / 100));
+      setZAmount(z_Amm);
+      let CalAmm = 100 - other - zAcc;
+      setCash(CalAmm);
+      let recieved = Number(total * (CalAmm / 100) - deposit);
+      setRecievable(recieved);
+      panelAdjustment = total - recieved - z_Amm;
+      setOtherAmount(+panelAdjustment);
+    } else {
+      let CalAmm = 100 - other - zAcc;
+      setCash(CalAmm);
+      z_Amm = Number(total * (zAcc / 100));
+      let recieved = Number(total * (CalAmm / 100) - deposit);
+      setRecievable(recieved);
+      setZAmount(z_Amm);
+      panelAdjustment = +total - +z_Amm;
+      setOtherAmount(panelAdjustment);
+    }
   };
 
   const dualPartyPartition = () => {
     let billWithoutMedAndCt = total - CT - medicine; // bill without medicine
-    let z_Amm =Number(billWithoutMedAndCt * (zAcc / 100)) 
+    let z_Amm = Number(billWithoutMedAndCt * (zAcc / 100));
     setZAmount(z_Amm);
     console.log("Adjust on zakat ", zAmount);
 
@@ -62,19 +86,9 @@ const WelfareCalc = () => {
     setCash(CalAmm);
     let recieved = Number(total * (CalAmm / 100) - deposit);
     setRecievable(recieved);
-    let panelAdjustment = total - recievable - z_Amm;
+    let panelAdjustment = total - recieved - z_Amm;
     setOtherAmount(+panelAdjustment);
     console.log("Adjusted On Panel 1 ", panelAdjustment);
-    // if (recieved > CalAmm) {
-    //   panelAdjustment = recievable - CalAmm;
-
-    //   return;
-    // } else {
-    //   panelAdjustment = CalAmm - recievable;
-    //   setOtherAmount(+panelAdjustment);
-    //   console.log("Adjusted On Panel 1", otherAmount);
-    //   return;
-    // }
   };
 
   // const parentFunc = () => {
@@ -128,7 +142,7 @@ const WelfareCalc = () => {
 
   return (
     <div>
-      <Header inpShow={false} />
+      <Header inpShow={false} value="Welfare Calculator" />
 
       <div className="flex flex-col items-center mt-4 space-y-4">
         <LabeledInput
@@ -190,7 +204,35 @@ const WelfareCalc = () => {
 
       <div className="flex justify-center space-x-3 mt-6">
         <ButtonDis onClick={parentFunc} title={"Calculate"} />
+        <ButtonDis
+          onClick={() => dualPartyComp("Sayl")}
+          title={"Saylani"}
+          disabled={+other + +zAcc === 100 ? false : true}
+        />
         <ButtonDis title={"Refresh"} onClick={reset} />
+      </div>
+      <div className="flex justify-center mt-11">
+        <div
+          className="bg-white bg-opacity-10 backdrop-blur-lg border border-white border-opacity-30 shadow-lg my-4 mx-4 p-3 rounded-3xl flex flex-col items-center space-y-3"
+          style={{ width: "600px" }}
+        >
+          <CenterHeading title={"Amount Breakup"} />
+          <LabeledInput
+            label={"Amount On Z-Account"}
+            disabled={true}
+            value={zAmount}
+          />
+          <LabeledInput
+            label={"Amount On Penal"}
+            disabled={true}
+            value={otherAmount}
+          />
+          <LabeledInput
+            label={"Amount Recievable"}
+            disabled={true}
+            value={recievable}
+          />
+        </div>
       </div>
     </div>
   );
