@@ -12,6 +12,7 @@ import WifiAceessPDF from "../../../Components/PDFDetails/WifiAceessPDF";
 import LabTestPdf from "../../../Components/PDFDetails/LabTestPdf";
 import SMSMarketingPDF from "../../../Components/PDFDetails/SMSMarketingPDF";
 import PanelFormPDF from "../../../Components/PDFDetails/PanelFormPDF";
+import CCTVFormPDF from "../../../Components/PDFDetails/CCTVFormPDF";
 const Forms = () => {
   const [selectedValue, setSelectedValue] = React.useState("");
   const [toggle, setToggle] = useState(false);
@@ -97,6 +98,14 @@ const Forms = () => {
       setOpen(false);
     } else if (selectedValue === "Panel Form") {
       blob = await pdf(<PanelFormPDF />).toBlob();
+
+      // Create a Blob URL and open it in a new tab
+      url = URL.createObjectURL(blob);
+      window.open(url, "_blank");
+      url = "";
+      setOpen(false);
+    }else if (selectedValue === "CCTV Form") {
+      blob = await pdf(<CCTVFormPDF />).toBlob();
 
       // Create a Blob URL and open it in a new tab
       url = URL.createObjectURL(blob);
