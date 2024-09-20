@@ -11,6 +11,7 @@ import Loader from "../../../Components/Modal/Loader";
 import WifiAceessPDF from "../../../Components/PDFDetails/WifiAceessPDF";
 import LabTestPdf from "../../../Components/PDFDetails/LabTestPdf";
 import SMSMarketingPDF from "../../../Components/PDFDetails/SMSMarketingPDF";
+import PanelFormPDF from "../../../Components/PDFDetails/PanelFormPDF";
 const Forms = () => {
   const [selectedValue, setSelectedValue] = React.useState("");
   const [toggle, setToggle] = useState(false);
@@ -88,6 +89,14 @@ const Forms = () => {
       setOpen(false);
     }else if (selectedValue === "SMS Form") {
       blob = await pdf(<SMSMarketingPDF />).toBlob();
+
+      // Create a Blob URL and open it in a new tab
+      url = URL.createObjectURL(blob);
+      window.open(url, "_blank");
+      url = "";
+      setOpen(false);
+    } else if (selectedValue === "Panel Form") {
+      blob = await pdf(<PanelFormPDF />).toBlob();
 
       // Create a Blob URL and open it in a new tab
       url = URL.createObjectURL(blob);
