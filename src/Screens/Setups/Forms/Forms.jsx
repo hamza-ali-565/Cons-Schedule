@@ -13,6 +13,7 @@ import LabTestPdf from "../../../Components/PDFDetails/LabTestPdf";
 import SMSMarketingPDF from "../../../Components/PDFDetails/SMSMarketingPDF";
 import PanelFormPDF from "../../../Components/PDFDetails/PanelFormPDF";
 import CCTVFormPDF from "../../../Components/PDFDetails/CCTVFormPDF";
+import RehiringPdf from "../../../Components/PDFDetails/RehiringPdf";
 const Forms = () => {
   const [selectedValue, setSelectedValue] = React.useState("");
   const [toggle, setToggle] = useState(false);
@@ -26,7 +27,7 @@ const Forms = () => {
     { name: "SMS Form" },
     { name: "Panel Form" },
     { name: "CCTV Form" },
-    { name: "Re-Hire Form" },
+    { name: "Re-Hiring Form" },
   ]);
   useEffect(() => {
     setDropData([
@@ -38,7 +39,7 @@ const Forms = () => {
       { name: "SMS Form" },
       { name: "Panel Form" },
       { name: "CCTV Form" },
-      { name: "Re-Hire Form" },
+      { name: "Re-Hiring Form" },
     ]);
   }, [toggle]);
 
@@ -88,7 +89,7 @@ const Forms = () => {
       window.open(url, "_blank");
       url = "";
       setOpen(false);
-    }else if (selectedValue === "SMS Form") {
+    } else if (selectedValue === "SMS Form") {
       blob = await pdf(<SMSMarketingPDF />).toBlob();
 
       // Create a Blob URL and open it in a new tab
@@ -104,8 +105,16 @@ const Forms = () => {
       window.open(url, "_blank");
       url = "";
       setOpen(false);
-    }else if (selectedValue === "CCTV Form") {
+    } else if (selectedValue === "CCTV Form") {
       blob = await pdf(<CCTVFormPDF />).toBlob();
+
+      // Create a Blob URL and open it in a new tab
+      url = URL.createObjectURL(blob);
+      window.open(url, "_blank");
+      url = "";
+      setOpen(false);
+    } else if (selectedValue === "Re-Hiring Form") {
+      blob = await pdf(<RehiringPdf />).toBlob();
 
       // Create a Blob URL and open it in a new tab
       url = URL.createObjectURL(blob);
