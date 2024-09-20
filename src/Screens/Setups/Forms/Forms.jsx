@@ -9,6 +9,8 @@ import UserLoginPDF from "../../../Components/PDFDetails/UserLoginPDF";
 import { ErrorAlert } from "../../../Components/Alert/Alert";
 import Loader from "../../../Components/Modal/Loader";
 import WifiAceessPDF from "../../../Components/PDFDetails/WifiAceessPDF";
+import LabTestPdf from "../../../Components/PDFDetails/LabTestPdf";
+import SMSMarketingPDF from "../../../Components/PDFDetails/SMSMarketingPDF";
 const Forms = () => {
   const [selectedValue, setSelectedValue] = React.useState("");
   const [toggle, setToggle] = useState(false);
@@ -18,6 +20,11 @@ const Forms = () => {
     { name: "User Login Form" },
     { name: "Internet Faculty Form" },
     { name: "Wifi Access Form" },
+    { name: "Lab Test Forms" },
+    { name: "SMS Form" },
+    { name: "Panel Form" },
+    { name: "CCTV Form" },
+    { name: "Re-Hire Form" },
   ]);
   useEffect(() => {
     setDropData([
@@ -25,6 +32,11 @@ const Forms = () => {
       { name: "User Login Form" },
       { name: "Internet Faculty Form" },
       { name: "Wifi Access Form" },
+      { name: "Lab Test Forms" },
+      { name: "SMS Form" },
+      { name: "Panel Form" },
+      { name: "CCTV Form" },
+      { name: "Re-Hire Form" },
     ]);
   }, [toggle]);
 
@@ -60,6 +72,22 @@ const Forms = () => {
       setOpen(false);
     } else if (selectedValue === "Wifi Access Form") {
       blob = await pdf(<WifiAceessPDF />).toBlob();
+
+      // Create a Blob URL and open it in a new tab
+      url = URL.createObjectURL(blob);
+      window.open(url, "_blank");
+      url = "";
+      setOpen(false);
+    } else if (selectedValue === "Lab Test Forms") {
+      blob = await pdf(<LabTestPdf />).toBlob();
+
+      // Create a Blob URL and open it in a new tab
+      url = URL.createObjectURL(blob);
+      window.open(url, "_blank");
+      url = "";
+      setOpen(false);
+    }else if (selectedValue === "SMS Form") {
+      blob = await pdf(<SMSMarketingPDF />).toBlob();
 
       // Create a Blob URL and open it in a new tab
       url = URL.createObjectURL(blob);
