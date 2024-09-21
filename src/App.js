@@ -12,12 +12,12 @@ import ConsDisp from "./Components/ConsultantDisp/ConsDisp";
 import Forms from "./Screens/Setups/Forms/Forms";
 import WelfareCalc from "./Screens/Setups/WelfareCalculator/WelfareCalc";
 import SimpleCalc from "./Screens/Setups/SimpleCalculator/SimpleCalc";
+import ExcelToJson from "./Screens/Setups/ExcelToJson";
 
 function App() {
   return (
     <Router>
-      {" "}
-      {/* Wrap with Router */}
+
       <div>
         <Routes>
           <Route path="/home" element={<ConsultantSchedule />} />
@@ -30,7 +30,7 @@ function App() {
       </div>
     </Router>
     // <>
-    //   {/* <ConsDisp /> */}
+    //   <ExcelToJson />
     // </>
   );
 }
