@@ -16,22 +16,22 @@ import ExcelToJson from "./Screens/Setups/ExcelToJson";
 
 function App() {
   return (
-    <Router>
+    // <Router>
 
-      <div>
-        <Routes>
-          <Route path="/home" element={<ConsultantSchedule />} />
-          <Route path="/consultantSetup" element={<Consultant />} />
-          <Route path="/formsIT" element={<Forms />} />
-          <Route path="/welfareCalculator" element={<WelfareCalc />} />
-          <Route path="/simpleCalculator" element={<SimpleCalc />} />
-          <Route path="*" element={<Navigate to="/home" replace={true} />} />
-        </Routes>
-      </div>
-    </Router>
-    // <>
-    //   <ExcelToJson />
-    // </>
+    //   <div>
+    //     <Routes>
+    //       <Route path="/home" element={<ConsultantSchedule />} />
+    //       <Route path="/consultantSetup" element={<Consultant />} />
+    //       <Route path="/formsIT" element={<Forms />} />
+    //       <Route path="/welfareCalculator" element={<WelfareCalc />} />
+    //       <Route path="/simpleCalculator" element={<SimpleCalc />} />
+    //       <Route path="*" element={<Navigate to="/home" replace={true} />} />
+    //     </Routes>
+    //   </div>
+    // </Router>
+    <>
+      <ExcelToJson />
+    </>
   );
 }
 
